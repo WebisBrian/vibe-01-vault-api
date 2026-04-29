@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: vault_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: vault_db
+      POSTGRES_USER: ${DB_USERNAME:-vault_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-vault_pass}
+    volumes:
+      - vault_db_data:/var/lib/postgresql/data
+
+volumes:
+  vault_db_data:
