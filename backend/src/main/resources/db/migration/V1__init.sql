@@ -1,0 +1,1 @@
+-- Initial migration baseline: tables are created in subsequent feature migrations

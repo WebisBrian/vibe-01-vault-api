@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/vault_db
+    username: ${DB_USERNAME:vault_user}
+    password: ${DB_PASSWORD:vault_pass}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+
+logging:
+  level:
+    dev.webisbrian.vault: DEBUG
+    org.springframework: INFO
+    root: INFO
