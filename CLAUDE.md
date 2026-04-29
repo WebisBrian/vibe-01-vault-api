@@ -208,6 +208,16 @@ Never write implementation code without a corresponding test.
 - **Every endpoint** must have Swagger annotations (`@Operation`, `@ApiResponse`).
 - **No secrets, passwords, or keys in versioned files.** Use environment variables. `.env` files are `.gitignore`'d.
 
+### Code Comments
+
+The developer is learning — comments are essential for comprehension and future maintenance.
+
+- **Every class**: a Javadoc header explaining its role, which layer it belongs to, and why it exists.
+- **Every public method**: a brief Javadoc explaining what it does, not how.
+- **Non-obvious logic**: inline comments (`//`) explaining the *why*, not the *what*. If the code needs a comment to explain *what* it does, the code should be refactored first.
+- **Architectural choices**: when a pattern is applied (port, adapter, factory, guard clause), a short comment referencing *why* this pattern is used here.
+- **No noise comments**: do not comment getters, setters, trivial constructors, or self-explanatory one-liners.
+
 ---
 
 ## Git Conventions
