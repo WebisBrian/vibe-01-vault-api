@@ -1,5 +1,6 @@
 package dev.webisbrian.vault.infrastructure.web;
 
+import dev.webisbrian.vault.domain.exception.DomainException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,24 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    /**
+     * Routes domain business exceptions to the appropriate HTTP status using the error code
+     * carried by {@link DomainException}. The domain does not know about HTTP — this handler
+     * is the single translation point.
+     */
+    @ExceptionHandler(DomainException.class)
+    public ResponseEntity<ApiErrorResponse> handleDomainException(
+            DomainException ex, HttpServletRequest request) {
+        HttpStatus status = switch (ex.getErrorCode()) {
+            case "SECRET_NOT_FOUND" -> HttpStatus.NOT_FOUND;
+            case "SECRET_ALREADY_EXISTS" -> HttpStatus.CONFLICT;
+            case "INVALID_SECRET" -> HttpStatus.BAD_REQUEST;
+            default -> HttpStatus.UNPROCESSABLE_ENTITY;
+        };
+        logger.warn("Domain exception on {}: [{}] {}", request.getRequestURI(), ex.getErrorCode(), ex.getMessage());
+        return build(status, ex.getMessage(), request.getRequestURI());
+    }
 
     /**
      * Collects all field violations into one message so the client receives every constraint
