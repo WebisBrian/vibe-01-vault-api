@@ -126,12 +126,12 @@
                         </goals>
                         <configuration>
                             <!-- Entry point and pure data types are excluded from coverage.
-                                 GlobalExceptionHandler is intentionally in scope so feature IT tests must cover it. -->
+                                 GlobalExceptionHandler exclusion removed: SecretControllerIT now
+                                 exercises its domain exception and validation handlers. -->
                             <excludes>
                                 <exclude>**/VaultApiApplication.class</exclude>
                                 <exclude>**/domain/exception/**</exclude>
                                 <exclude>**/infrastructure/web/ApiErrorResponse.class</exclude>
-                                <exclude>**/infrastructure/web/GlobalExceptionHandler.class</exclude>
                             </excludes>
                             <rules>
                                 <rule>

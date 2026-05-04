@@ -1,6 +1,8 @@
 spring:
   application:
     name: vault-api
+  jpa:
+    open-in-view: false
   mvc:
     throw-exception-if-no-handler-found: true
   web:
