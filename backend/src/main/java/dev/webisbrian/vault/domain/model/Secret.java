@@ -12,7 +12,7 @@ import java.util.UUID;
  *
  * <p>Layer: domain/model — zero framework imports, pure Java only.
  */
-public class Secret {
+public final class Secret {
 
     private final UUID id;
     private SecretName name;
