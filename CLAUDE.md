@@ -294,3 +294,11 @@ Small, atomic commits. Avoid monolithic commits.
 - Tests come first — if you write implementation without a test, rewrite.
 - When in doubt, ask. Do not make structural decisions on your own.
 - Favor a code-run-fix cycle over long upfront deliberation. Write the code, run the tests, fix failures. Do not try to predict every issue before coding.
+
+---
+
+## Décisions actées
+
+- Sensitive value objects must override `toString()` with a protective message (e.g. `"RawPassword[PROTECTED]"`) — prevents accidental leak in logs.
+- Infrastructure concerns (password encoding, encryption, etc.) are abstracted via domain port out interfaces — domain defines the contract, infrastructure implements.
+- Aggregate roots are `final` — prevents subclassing that could break invariants.
