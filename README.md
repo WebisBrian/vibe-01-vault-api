@@ -26,7 +26,7 @@ docker compose up -d
 
 ```bash
 cd backend
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
+mvn spring-boot:run "-Dspring-boot.run.profiles=dev"
 ```
 
 Swagger UI: `http://localhost:8080/api/v1/swagger-ui/index.html`
