@@ -37,8 +37,8 @@ public class GlobalExceptionHandler {
             DomainException ex, HttpServletRequest request) {
         HttpStatus status = switch (ex.getErrorCode()) {
             case "SECRET_NOT_FOUND" -> HttpStatus.NOT_FOUND;
-            case "SECRET_ALREADY_EXISTS" -> HttpStatus.CONFLICT;
-            case "INVALID_SECRET" -> HttpStatus.BAD_REQUEST;
+            case "SECRET_ALREADY_EXISTS", "USER_ALREADY_EXISTS" -> HttpStatus.CONFLICT;
+            case "INVALID_SECRET", "INVALID_USER" -> HttpStatus.BAD_REQUEST;
             default -> HttpStatus.UNPROCESSABLE_ENTITY;
         };
         logger.warn("Domain exception on {}: [{}] {}", request.getRequestURI(), ex.getErrorCode(), ex.getMessage());
