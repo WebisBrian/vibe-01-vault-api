@@ -293,3 +293,4 @@ Small, atomic commits. Avoid monolithic commits.
 - No business logic in controllers — if a controller has an `if` that isn't about HTTP concerns, it's wrong.
 - Tests come first — if you write implementation without a test, rewrite.
 - When in doubt, ask. Do not make structural decisions on your own.
+- Favor a code-run-fix cycle over long upfront deliberation. Write the code, run the tests, fix failures. Do not try to predict every issue before coding.
