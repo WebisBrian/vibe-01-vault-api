@@ -16,6 +16,11 @@ springdoc:
   api-docs:
     enabled: true
 
+vault:
+  admin:
+    email: ${VAULT_ADMIN_EMAIL:}
+    password: ${VAULT_ADMIN_PASSWORD:}
+
 logging:
   level:
     dev.webisbrian.vault: DEBUG

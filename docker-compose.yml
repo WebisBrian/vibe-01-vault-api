@@ -8,6 +8,9 @@ services:
       POSTGRES_DB: vault_db
       POSTGRES_USER: ${DB_USERNAME:-vault_user}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-vault_pass}
+    # Application env vars (set in .env, gitignored):
+    # VAULT_ADMIN_EMAIL   — email for the seeded ADMIN user
+    # VAULT_ADMIN_PASSWORD — password for the seeded ADMIN user (min 12 chars, 3+ complexity categories)
     volumes:
       - vault_db_data:/var/lib/postgresql/data
 
